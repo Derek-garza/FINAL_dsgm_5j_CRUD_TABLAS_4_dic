@@ -1,0 +1,44 @@
+{% extends "base.html" %}
+{% block cuerpo %}
+<div class="row">
+    <div class="col-md-4 offset-md-4">
+        <div class="card">
+            <div class="card-body">
+                <form action="/editarProducto/" method="POST">
+                    {% csrf_token %}
+                    <div class="form-group">
+                        <input type="number" id="txtcodigo" name="txtcodigo" class="form-control" value="{{ mi_producto.codigo }}" readonly>
+                    </div>
+                    <div class="form-group py-3">
+                        <input type="text" id="txtnombre" name="txtnombre" class="form-control" value="{{ mi_producto.nombre }}" required>
+                    </div>
+                    <div class="form-group py-3">
+                        <input type="number" id="txtpeso" name="txtpeso" step="0.01" class="form-control" value="{{ mi_producto.peso }}" required>
+                    </div>
+                    <div class="form-group py-3">
+                        <input type="number" id="txtprecio" name="txtprecio" step="0.01" class="form-control" value="{{ mi_producto.precio }}" required>
+                    </div>
+                    <div class="form-group py-3">
+                        <input type="number" name="numstock" value="{{ mi_producto.stock }}" required class="form-control" >
+                    </div>
+                    <div class="form-group py-3">
+                        <input type="number" id="txtid_producto" name="txtid_producto" class="form-control" value="{{ mi_producto.id_producto }}" required>
+                    </div>
+                    <div class="form-group py-3">
+                        <input type="text" id="txtcalidad" name="txtcalidad" class="form-control" value="{{ mi_producto.calidad }}" required>
+                    </div>
+                    <div class="form-group">
+                        <input type="number" name="idsucursal" value="{{ mi_producto.id_sucursal }}" required class="form-control">
+                    </div>
+                    <div class="form-group">
+                        <input type="number" name="idprovedor" value="{{ mi_producto.id_provedor }}" required class="form-control">
+                    </div>
+                    <div class="form-group py-2">
+                        <button type="submit" class="btn btn-primary">Guardar</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
