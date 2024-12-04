@@ -1,0 +1,55 @@
+{% extends "base.html" %}
+{% load static %}
+{% block cuerpo %}
+<div class="row">
+    <div class="col-md-4">
+        <h2>Registrar Venta</h2>
+        <form action="/registrarVenta/" method="POST">
+            {% csrf_token %}
+            <input type="number" name="txtid_venta" placeholder="ID Venta" class="form-control my-2" readonly>
+            <input type="number" name="txtid_empleado" placeholder="ID Empleado" class="form-control my-2" required>
+            <input type="number" name="txtid_cliente" placeholder="ID Cliente" class="form-control my-2" required>
+            <input type="number" name="txtid_producto" placeholder="ID Producto" class="form-control my-2" required>
+            <input type="date" name="txtfecha_venta" class="form-control my-2" required>
+            <input type="number" name="txtcantidad" placeholder="Cantidad" class="form-control my-2" required>
+            <input type="number" name="txtid_sucursal" placeholder="ID Sucursal" class="form-control my-2" required>
+            <button type="submit" class="btn btn-primary">Guardar</button>
+        </form>
+    </div>
+    <div class="col-md-8">
+        <img class="w-50" src="{% static 'img/ventaas.jpg' %}" width="400" height="400" alt="">
+        <h2>Listado de Ventas</h2>
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>ID Venta</th>
+                    <th>ID Empleado</th>
+                    <th>ID Cliente</th>
+                    <th>ID Producto</th>
+                    <th>Fecha Venta</th>
+                    <th>Cantidad</th>
+                    <th>ID Sucursal</th>
+                    <th>Acciones</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for v in mis_ventas %}
+                <tr>
+                    <td>{{ v.id_venta }}</td>
+                    <td>{{ v.id_empleado }}</td>
+                    <td>{{ v.id_cliente }}</td>
+                    <td>{{ v.id_producto }}</td>
+                    <td>{{ v.fecha_venta }}</td>
+                    <td>{{ v.cantidad }}</td>
+                    <td>{{ v.id_sucursal }}</td>
+                    <td>
+                        <a href="seleccionarVenta/{{ v.id_venta }}" class="btn btn-info">Editar</a>
+                        <a href="borrarVenta/{{ v.id_venta }}" class="btn btn-danger">Eliminar</a>
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</div>
+{% endblock %}

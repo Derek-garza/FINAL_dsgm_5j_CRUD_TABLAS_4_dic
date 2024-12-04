@@ -1,0 +1,55 @@
+{% extends "base.html" %}
+{% block cuerpo %}
+<div class="row">
+    <div class="col-md-4 offset-md-4">
+        <h2>Editar Venta</h2>
+        <form action="/editarVenta/" method="POST">
+            {% csrf_token %}
+            <!-- Campo solo lectura para identificar la venta -->
+            <div class="form-group">
+                <label for="txtid_venta">ID Venta</label>
+                <input type="number" id="txtid_venta" name="txtid_venta" 
+                       value="{{ mi_venta.id_venta }}" 
+                       class="form-control" readonly>
+            </div>
+            <div class="form-group">
+                <label for="txtid_empleado">ID Empleado</label>
+                <input type="number" id="txtid_empleado" name="txtid_empleado" 
+                       value="{{ mi_venta.id_empleado }}" 
+                       class="form-control" required>
+            </div>
+            <div class="form-group">
+                <label for="txtid_cliente">ID Cliente</label>
+                <input type="number" id="txtid_cliente" name="txtid_cliente" 
+                       value="{{ mi_venta.id_cliente }}" 
+                       class="form-control" required>
+            </div>
+            <div class="form-group">
+                <label for="txtid_producto">ID Producto</label>
+                <input type="number" id="txtid_producto" name="txtid_producto" 
+                       value="{{ mi_venta.id_producto }}" 
+                       class="form-control" required>
+            </div>
+            <div class="form-group">
+                <label for="txtfecha_venta">Fecha de Venta</label>
+                <input type="date" id="txtfecha_venta" name="txtfecha_venta" 
+                       value="{{ fecha_venta }}" 
+                       class="form-control" required>
+            </div>
+            <div class="form-group">
+                <label for="txtcantidad">Cantidad</label>
+                <input type="number" id="txtcantidad" name="txtcantidad" 
+                       value="{{ mi_venta.cantidad }}" 
+                       class="form-control" required>
+            </div>
+            <div class="form-group">
+                <label for="txtid_sucursal">ID Sucursal</label>
+                <input type="number" id="txtid_sucursal" name="txtid_sucursal" 
+                       value="{{ mi_venta.id_sucursal }}" 
+                       class="form-control" required>
+            </div>
+            <button type="submit" class="btn btn-primary">Guardar</button>
+        </form>
+    </div>
+</div>
+{% endblock %}

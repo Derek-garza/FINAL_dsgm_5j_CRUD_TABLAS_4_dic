@@ -1,0 +1,67 @@
+{% extends "base.html" %}
+{% load static %}
+{% block cuerpo %}
+<div class="row">
+    <div class="col-sm-12 col-md-4 col-lg-4 col-xl-4">
+        <h1>Registrar Sucursal</h1>
+        <div class="card">
+            <div class="card-body">
+                <form action="/registrarSucursal/" method="POST">{% csrf_token %}
+                    <div class="form-group">
+                        <input type="number" id="txtcodigo" name="txtcodigo" class="form-control" placeholder="ID Sucursal" readonly>
+                    </div>
+                    <div class="form-group py-3">
+                        <input type="text" id="txtnombre" name="txtnombre" class="form-control" placeholder="Nombre Sucursal" required>
+                    </div>
+                    <div class="form-group py-3">
+                        <textarea id="txtcalle" name="txtcalle" class="form-control" placeholder="Calle y dirección" required></textarea>
+                    </div>
+                    <div class="form-group py-3">
+                        <input type="number" id="txtempleados" name="txtempleados" class="form-control" placeholder="Número de empleados" required>
+                    </div>
+                    <div class="form-group py-3">
+                        <input type="number" id="txttelefono" name="txttelefono" class="form-control" placeholder="Teléfono de la sucursal" required>
+                    </div>
+                    <div class="form-group py-2">
+                        <button type="submit" class="btn btn-primary">Guardar</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    <div class="col-sm-12 col-md-8 col-lg-8 col-xl-8">
+        <img class="w-50" src="{% static 'img/sucursal.jpg' %}" width="400" height="400" alt="">
+        <h1>Listado de Sucursales</h1>
+        <div class="table-responsive">
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <th>#</th>
+                        <th>ID Sucursal</th>
+                        <th>Nombre</th>
+                        <th>Calle</th>
+                        <th>Número de Empleados</th>
+                        <th>Teléfono</th>
+                        <th>Editar</th>
+                        <th>Borrar</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for sucursal in missucursales %}
+                    <tr>
+                        <td>{{ forloop.counter }}</td>
+                        <td>{{ sucursal.id_sucursal }}</td>
+                        <td>{{ sucursal.nombre_sucursal }}</td>
+                        <td>{{ sucursal.calle_sucursal }}</td>
+                        <td>{{ sucursal.num_empleados }}</td>
+                        <td>{{ sucursal.tel_sucursal }}</td>
+                        <td><a href="seleccionarSucursal/{{ sucursal.id_sucursal }}" class="btn btn-info">Editar</a></td>
+                        <td><a href="borrarSucursal/{{ sucursal.id_sucursal }}" class="btn btn-danger">Borrar</a></td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+{% endblock %}
